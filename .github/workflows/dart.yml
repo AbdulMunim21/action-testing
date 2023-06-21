@@ -33,42 +33,42 @@ jobs:
       - name: Ensure the Dart code is formatted correctly
         run: dart format --set-exit-if-changed .
 
-  # unit-test:
-  #   name: Unit Tests
-  #   needs: lint
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     # Set up Flutter.
-  #     - name: Setup Flutter
-  #       uses: subosito/flutter-action@v2
-  #       with:
-  #         flutter-version: "3.10"
-  #         channel: "stable"
-  #         cache: true
+  unit-test:
+    name: Unit Tests
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      # Set up Flutter.
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.10"
+          channel: "stable"
+          cache: true
 
-  #     - name: Checkout code
-  #       uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
+      - name: Checkout code
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
 
-  #     - name: Cache `pub` dependencies
-  #       uses: actions/cache@v2
-  #       with:
-  #         path: $HOME/.pub-cache
-  #         key: ${{ runner.os }}-pub-cache-${{ hashFiles('**/pubspec.lock') }}
-  #         restore-keys: |
-  #           ${{ runner.os }}-pub-cache-
+      - name: Cache `pub` dependencies
+        uses: actions/cache@v2
+        with:
+          path: $HOME/.pub-cache
+          key: ${{ runner.os }}-pub-cache-${{ hashFiles('**/pubspec.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-cache-
 
-  #     - run: flutter pub get
+      - run: flutter pub get
 
-  #     - name: Create .env file
-  #       run: echo "" >> .env
+      - name: Create .env file
+        run: echo "" >> .env
 
-  #     - name: Run unit tests
-  #       run: flutter test --coverage
+      - name: Run unit tests
+        run: flutter test --coverage
 
-  #     - name: Generage coverage report
-  #       run: |
-  #         sudo apt-get update
-  #         sudo apt-get install lcov
+      - name: Generage coverage report
+        run: |
+          sudo apt-get update
+          sudo apt-get install lcov
 
-  #         lcov --summary coverage/lcov.info
-  #         genhtml coverage/lcov.info --output=coverage
+          lcov --summary coverage/lcov.info
+          genhtml coverage/lcov.info --output=coverage
