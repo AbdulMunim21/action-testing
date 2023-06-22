@@ -64,11 +64,3 @@ jobs:
 
       - name: Run unit tests
         run: flutter test --coverage
-
-      - name: Generage coverage report
-        run: |
-          sudo apt-get update
-          sudo apt-get install lcov
-
-          lcov --summary coverage/lcov.info
-          genhtml coverage/lcov.info --output=coverage
