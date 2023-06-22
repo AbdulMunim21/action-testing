@@ -32,7 +32,6 @@ jobs:
 
       - name: Ensure the Dart code is formatted correctly
         run: dart format --set-exit-if-changed .
-
   unit-test:
     name: Unit Tests
     needs: lint
@@ -64,3 +63,22 @@ jobs:
 
       - name: Run unit tests
         run: flutter test --coverage
+        
+  build-android:
+    name: Build For Android APK
+    needs: unit-test
+    runs-on: macos-latest
+    steps:
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.10"
+          channel: "stable"
+          cache: true
+      - name: Checkout code   
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
+      
+      - run: flutter pub get
+      - run: flutter build apk --release
+        
+    
