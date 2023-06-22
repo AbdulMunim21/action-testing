@@ -75,6 +75,10 @@ jobs:
           flutter-version: "3.10"
           channel: "stable"
           cache: true
+          
+      - uses: actions/seup-java@v2
+        with:
+          java-version: "12.x"
       - name: Checkout code   
         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
       
