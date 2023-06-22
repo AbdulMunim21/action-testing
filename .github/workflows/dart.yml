@@ -12,7 +12,7 @@ on:
 jobs:
   lint:
     name: Check for syntax errors and code style
-    runs-on: ubuntu-latest
+    runs-on: macos-12
 
     steps:
       - name: Setup Flutter
@@ -36,7 +36,7 @@ jobs:
   unit-test:
     name: Unit Tests
     needs: lint
-    runs-on: ubuntu-latest
+    runs-on: macos-12
     steps:
       # Set up Flutter.
       - name: Setup Flutter
