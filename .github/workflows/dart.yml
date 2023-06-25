@@ -82,8 +82,14 @@ jobs:
           java-version: '17'
       - name: Checkout code   
         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
-      
+        
       - run: flutter pub get
       - run: flutter build apk
+      
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: action-testing-APK
+          path: build/app/outputs/flutter-apk/app-release.apk
         
     
