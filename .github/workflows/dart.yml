@@ -94,6 +94,6 @@ jobs:
           uses: actions/upload-artifact@v2
           with:
             name: action-testing-APK
-            path: ${{ github.workspace }}/build/app/outputs/flutter-apk/app-release.apk
+            path: /build/app/outputs/flutter-apk/app-release.apk
         
     
